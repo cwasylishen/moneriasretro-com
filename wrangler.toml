@@ -1,3 +1,6 @@
-name = "moneriasretro-com"
+name = "moneriasretro"
 compatibility_date = "2026-01-01"
-pages_build_output_dir = "."
+
+[assets]
+directory = "./"
+not_found_handling = "404-page"
