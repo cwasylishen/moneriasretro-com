@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Página no encontrada | Monerías Retro</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<link rel="icon" type="image/png" href="/assets/images/logo.png" />
+<style>
+  .e404{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px 20px;background:linear-gradient(160deg,var(--cream) 0%,var(--purple-soft) 100%)}
+  .e404 img{width:118px;height:118px;border-radius:50%;background:#fff;padding:5px;box-shadow:0 12px 30px rgba(124,58,237,.32);margin-bottom:16px;animation:bob 3.2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+  .e404 .big{font-family:var(--font-display);color:var(--purple);font-size:clamp(3.4rem,15vw,6rem);line-height:1;letter-spacing:1px;text-shadow:4px 4px 0 #C9B8F2,8px 8px 0 rgba(124,58,237,.2)}
+  .e404 h1{font-family:var(--font-display);color:var(--ink);font-size:clamp(1.35rem,4.2vw,2rem);margin:8px 0 10px;letter-spacing:.3px}
+  .e404 p{max-width:440px;color:var(--ink-soft);margin-bottom:24px}
+  .e404 .btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+</style>
+</head>
+<body>
+<main class="e404">
+  <img src="/assets/images/logo.png" alt="Monerías Retro" />
+  <div class="big">404</div>
+  <h1>¡Esta página se fue de paseo!</h1>
+  <p>No encontramos lo que buscás. Volvé al inicio para ver los juegos retro, la papelería con aroma y las muñecas de vestir.</p>
+  <div class="btns">
+    <a href="/" class="btn btn-purple">Volver al inicio</a>
+    <a href="https://wa.me/50684804222?text=¡Hola!%20Tengo%20una%20consulta%20sobre%20sus%20productos." class="btn btn-wa" rel="noopener">Escribinos por WhatsApp</a>
+  </div>
+</main>
+<script>(function(){var S="monerias";function vid(){try{var k="wzv",x=localStorage.getItem(k);if(!x){x=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,x)}return x}catch(e){return""}}
+function send(t){try{var r=document.referrer;try{if(r&&new URL(r).hostname===location.hostname)r=""}catch(e){}navigator.sendBeacon("https://app.wizardweb.ca/api/ingest",JSON.stringify({site_id:S,type:t,path:location.pathname,referrer:r,visitor:vid()}))}catch(e){}}
+send("pageview");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com/send"]');if(a)send("whatsapp");},true);})();</script>
+</body>
+</html>
