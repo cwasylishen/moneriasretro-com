@@ -1,6 +1,17 @@
 name = "moneriasretro-com"
+main = "worker.js"
 compatibility_date = "2026-01-01"
+workers_dev = true
 
 [assets]
-directory = "./"
+directory = "./public"
+binding = "ASSETS"
 not_found_handling = "404-page"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "moneriasretro-analytics"
+database_id = "a2ea7e7a-0a90-44f7-9e20-2ddd346a2527"
+
+[[send_email]]
+name = "EMAIL"

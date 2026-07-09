@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Panel · Monerías Retro</title>
+<style>
+  :root{--p:#7C3AED;--ink:#2A1B36;--soft:#5B4B66;--line:#ece6f5;--bg:#f6f3fb;--card:#fff}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+  a{color:var(--p)}
+  .wrap{max-width:1100px;margin:0 auto;padding:18px}
+  /* login */
+  #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+  .login-card{background:var(--card);border-radius:18px;box-shadow:0 18px 50px rgba(42,27,54,.15);padding:32px 28px;max-width:380px;width:100%;text-align:center}
+  .login-card img{width:74px;height:74px;border-radius:50%;margin-bottom:10px}
+  .login-card h1{font-size:1.3rem;margin-bottom:4px;color:var(--p)}
+  .login-card p{color:var(--soft);font-size:.92rem;margin-bottom:18px}
+  input,select{font:inherit;border:1px solid var(--line);border-radius:10px;padding:11px 13px;width:100%;background:#fff;color:var(--ink)}
+  button{font:inherit;cursor:pointer;border:none;background:var(--p);color:#fff;font-weight:600;border-radius:10px;padding:11px 18px}
+  button:hover{background:#6d28d9}
+  .msg{font-size:.88rem;margin-top:12px;min-height:18px}
+  .msg.ok{color:#0f7a4d}.msg.err{color:#c0392b}
+  /* dash */
+  #dash{display:none}
+  .top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .top h1{font-size:1.25rem;color:var(--p);display:flex;align-items:center;gap:10px}
+  .top h1 img{width:34px;height:34px;border-radius:50%}
+  .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .controls select{width:auto}
+  .controls label{font-size:.85rem;color:var(--soft);display:flex;align-items:center;gap:5px}
+  .controls .lg{background:#eee;color:var(--soft);padding:8px 12px;border-radius:8px;text-decoration:none;font-size:.85rem}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+  .card{background:var(--card);border-radius:14px;padding:15px 17px;box-shadow:0 2px 10px rgba(42,27,54,.05)}
+  .card .lab{font-size:.78rem;color:var(--soft);text-transform:uppercase;letter-spacing:.03em}
+  .card .num{font-size:1.7rem;font-weight:700;margin-top:3px}
+  .card .sub{font-size:.78rem;color:var(--soft)}
+  .chartbox{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(42,27,54,.05);margin-bottom:18px;height:300px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+  .panel{background:var(--card);border-radius:14px;padding:16px;box-shadow:0 2px 10px rgba(42,27,54,.05)}
+  .panel h3{font-size:.95rem;margin-bottom:10px}
+  table{width:100%;border-collapse:collapse;font-size:.88rem}
+  th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--line)}
+  th{color:var(--soft);font-weight:600;font-size:.78rem;text-transform:uppercase}
+  td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+  .bar{height:6px;background:var(--p);border-radius:3px;opacity:.25}
+  .empty{color:var(--soft);font-size:.85rem;padding:8px 0}
+  .foot{text-align:center;color:var(--soft);font-size:.78rem;margin:22px 0}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <form class="login-card" id="loginForm">
+    <img src="/assets/images/logo.png" alt="Monerías Retro" />
+    <h1>Panel de Monerías Retro</h1>
+    <p>Ingresá tu correo de administradora. Te enviamos un enlace de acceso.</p>
+    <input type="email" id="email" placeholder="tucorreo@gmail.com" autocomplete="email" required />
+    <button type="submit" style="width:100%;margin-top:12px">Enviar enlace de acceso</button>
+    <div class="msg" id="loginMsg"></div>
+  </form>
+</div>
+
+<div id="dash">
+  <div class="wrap">
+    <div class="top">
+      <h1><img src="/assets/images/logo.png" alt="" />Estadísticas</h1>
+      <div class="controls">
+        <select id="days">
+          <option value="7">Últimos 7 días</option>
+          <option value="30" selected>Últimos 30 días</option>
+          <option value="90">Últimos 90 días</option>
+          <option value="365">Último año</option>
+        </select>
+        <label><input type="checkbox" id="bots" style="width:auto" /> Incluir bots</label>
+        <a class="lg" href="/api/logout">Salir</a>
+      </div>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="chartbox"><canvas id="chart"></canvas></div>
+    <div class="grid" id="panels"></div>
+    <div class="foot">Monerías Retro · panel privado · datos sin cookies ni datos personales</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+(function(){
+  var loginEl=document.getElementById('login'), dashEl=document.getElementById('dash');
+  var chart=null;
+  function flag(cc){ if(!cc||cc.length!==2||cc==='XX') return '🌐'; try{ return String.fromCodePoint.apply(null,[].map.call(cc.toUpperCase(),function(c){return 127397+c.charCodeAt(0);})); }catch(e){ return '🌐'; } }
+  function evMap(arr){ var m={}; (arr||[]).forEach(function(e){ m[e.type]=e.n; }); return m; }
+  function sum(arr,k){ var s=0; (arr||[]).forEach(function(x){ s+=(x[k]||0); }); return s; }
+
+  function table(rows, cols){
+    if(!rows||!rows.length) return '<div class="empty">Sin datos todavía.</div>';
+    var max=Math.max.apply(null,rows.map(function(r){return r[cols[1].k]||0;}))||1;
+    var h='<table><tr>'+cols.map(function(c){return '<th'+(c.n?' class="n"':'')+'>'+c.t+'</th>';}).join('')+'</tr>';
+    rows.forEach(function(r){
+      h+='<tr>';
+      h+='<td>'+(cols[0].fmt?cols[0].fmt(r[cols[0].k]):esc(r[cols[0].k]))+'</td>';
+      var v=r[cols[1].k]||0;
+      h+='<td class="n">'+v+'<div class="bar" style="width:'+Math.round(v/max*100)+'%"></div></td>';
+      h+='</tr>';
+    });
+    return h+'</table>';
+  }
+  function esc(s){ s=(s==null?'':''+s); return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function panel(title, html){ return '<div class="panel"><h3>'+title+'</h3>'+html+'</div>'; }
+
+  function render(d){
+    var ev=evMap(d.events);
+    var waTotal=sum(d.whatsapp,'n');
+    var cards=[
+      ['Visitantes', d.totals.visitors||0, 'únicos'],
+      ['Páginas vistas', d.totals.pageviews||0, ''],
+      ['Clics a WhatsApp', waTotal, 'conversiones'],
+      ['Chats abiertos', ev.chat_open||0, ''],
+      ['Pedidos finalizados', ev.checkout||0, 'checkout'],
+      ['Productos agregados', ev.add_to_cart||0, ''],
+      ['Pop-up preventa visto', ev.popup_view||0, '']
+    ];
+    document.getElementById('cards').innerHTML=cards.map(function(c){
+      return '<div class="card"><div class="lab">'+c[0]+'</div><div class="num">'+c[1]+'</div><div class="sub">'+c[2]+'</div></div>';
+    }).join('');
+
+    var labels=d.byDay.map(function(r){return r.day.slice(5);});
+    var pv=d.byDay.map(function(r){return r.pageviews||0;});
+    var vis=d.byDay.map(function(r){return r.visitors||0;});
+    if(chart) chart.destroy();
+    chart=new Chart(document.getElementById('chart'),{type:'line',
+      data:{labels:labels,datasets:[
+        {label:'Páginas vistas',data:pv,borderColor:'#7C3AED',backgroundColor:'rgba(124,58,237,.12)',fill:true,tension:.3},
+        {label:'Visitantes',data:vis,borderColor:'#F472B6',backgroundColor:'rgba(244,114,182,.10)',fill:true,tension:.3}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}
+    });
+
+    var panels='';
+    panels+=panel('Países', table(d.countries,[{t:'País',k:'country',fmt:function(v){return flag(v)+' '+esc(v||'XX');}},{t:'Visitantes',k:'visitors',n:true}]));
+    panels+=panel('Clics a WhatsApp por lugar', table(d.whatsapp,[{t:'Origen',k:'source'},{t:'Clics',k:'n',n:true}]));
+    panels+=panel('De dónde llegan', table(d.referrers,[{t:'Fuente',k:'ref'},{t:'Visitas',k:'n',n:true}]));
+    panels+=panel('Páginas más vistas', table(d.pages,[{t:'Página',k:'path'},{t:'Vistas',k:'n',n:true}]));
+    panels+=panel('Productos más agregados', table(d.products,[{t:'Producto',k:'product'},{t:'Veces',k:'n',n:true}]));
+    panels+=panel('Todos los eventos', table(d.events,[{t:'Evento',k:'type'},{t:'Total',k:'n',n:true}]));
+    document.getElementById('panels').innerHTML=panels;
+  }
+
+  function load(){
+    var days=document.getElementById('days').value;
+    var bots=document.getElementById('bots').checked?'1':'0';
+    fetch('/api/stats?days='+days+'&bots='+bots,{credentials:'same-origin'}).then(function(r){
+      if(r.status===401){ loginEl.style.display='flex'; dashEl.style.display='none'; return null; }
+      return r.json();
+    }).then(function(d){ if(!d) return; loginEl.style.display='none'; dashEl.style.display='block'; render(d); })
+    .catch(function(){ loginEl.style.display='flex'; });
+  }
+
+  document.getElementById('loginForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var msg=document.getElementById('loginMsg'); msg.className='msg'; msg.textContent='Enviando...';
+    fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value.trim()})})
+      .then(function(r){return r.json();})
+      .then(function(){ msg.className='msg ok'; msg.textContent='Si el correo es de administradora, te enviamos el enlace. Revisá tu bandeja (y spam).'; })
+      .catch(function(){ msg.className='msg err'; msg.textContent='Hubo un problema, probá de nuevo.'; });
+  });
+  document.getElementById('days').addEventListener('change',load);
+  document.getElementById('bots').addEventListener('change',load);
+  var tok=new URLSearchParams(location.search).get('token');
+  if(tok){
+    fetch('/api/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:tok}),credentials:'same-origin'})
+      .then(function(r){return r.json();})
+      .then(function(){ history.replaceState({},'','/admin'); load(); })
+      .catch(function(){ history.replaceState({},'','/admin'); load(); });
+  } else { load(); }
+})();
+</script>
+</body>
+</html>
