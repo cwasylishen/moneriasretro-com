@@ -51,7 +51,7 @@
       '<img class="mrp-img" src="assets/images/gran-banco.png" alt="Gran Banco Clásico" /></div>' +
       '<div class="mrp-body">' +
       '<h3 class="mrp-title">Gran Banco Clásico</h3>' +
-      '<p class="mrp-urg">Por la <b>enorme demanda</b>, abrimos preventa solo para las primeras <b>100 personas</b>. ¡Aún quedan cupos!</p>' +
+      '<p class="mrp-urg">Por la <b>enorme demanda</b>, el Gran Banco Clásico se consigue <b>solo por preventa</b>. Apartá el tuyo hoy.</p>' +
       '<ul class="mrp-list">' +
       '<li>Apartá el tuyo con <b>₡5.000</b> por SINPE (8480 4222, Karla Coto)</li>' +
       '<li>Precio total <b>₡18.500</b>. El pedido ingresa el <b>6 de julio</b></li>' +

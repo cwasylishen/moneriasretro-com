@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.moneriasretro.com/sitemap.xml
-LLM-Content: https://www.moneriasretro.com/llms.txt
+Sitemap: https://moneriasretro.com/sitemap.xml
+LLM-Content: https://moneriasretro.com/llms.txt
