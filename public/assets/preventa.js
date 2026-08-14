@@ -54,7 +54,7 @@
       '<p class="mrp-urg">Por la <b>enorme demanda</b>, el Gran Banco Clásico se consigue <b>solo por preventa</b>. Apartá el tuyo hoy.</p>' +
       '<ul class="mrp-list">' +
       '<li>Apartá el tuyo con <b>₡5.000</b> por SINPE (8480 4222, Karla Coto)</li>' +
-      '<li>Precio total <b>₡18.500</b>. El pedido ingresa el <b>6 de julio</b></li>' +
+      '<li>Precio total <b>₡18.500</b></li>' +
       '<li>Envíos a todo el país por Correos o retiro en Curridabat</li>' +
       '</ul>' +
       '<a class="mrp-cta" href="https://wa.me/' + WA + '?text=' + encodeURIComponent(WA_MSG) + '" target="_blank" rel="noopener">' + ICON_WA + 'Reservar mi Gran Banco</a>' +
