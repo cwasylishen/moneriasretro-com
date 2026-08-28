@@ -151,7 +151,7 @@ html.is-scrolled .mark img { width: 32px; height: 32px; }
 .hero { background: var(--cream-2); border-bottom: 3px solid var(--ink); position: relative; overflow: hidden; }
 .hero .dots { color: var(--fucsia); }
 .hero-in { position: relative; padding-top: 24px; }
-h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 10.5vw, 52px); line-height: 1.02; color: var(--grape); text-shadow: 3px 3px 0 var(--white), 6px 6px 0 var(--ink); }
+h1 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 9.4vw, 52px); line-height: 1.02; color: var(--grape); text-shadow: 3px 3px 0 var(--white), 6px 6px 0 var(--ink); }
 .lead { margin-top: 14px; font-size: 16px; font-weight: 500; max-width: 32em; color: var(--ink); }
 .hero figure { margin-top: 14px; }
 .hero figure img { width: 100%; max-height: 220px; object-fit: contain; object-position: center bottom; }
@@ -163,7 +163,7 @@ h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 10.5v
 @media (min-width: 900px) {
   .hero-in { padding-top: 44px; }
   .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: end; }
-  h1 { font-size: 74px; text-shadow: 4px 4px 0 var(--white), 9px 9px 0 var(--ink); }
+  h1 { font-size: 62px; text-shadow: 4px 4px 0 var(--white), 8px 8px 0 var(--ink); }
   .lead { font-size: 18.5px; margin-top: 22px; }
   .hero figure img { max-height: 300px; }
   .facts { margin: 0; padding: 26px 0; flex-wrap: wrap; }
@@ -197,7 +197,7 @@ h2 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 8vw, 
 /* ---------- PREVENTA (bloque en página, sin pop-up) ---------- */
 .preventa { background: var(--amarillo); color: var(--ink); border: 3px solid var(--ink); border-radius: var(--r); box-shadow: var(--pop-lg); padding: 20px; margin-top: 26px; display: grid; gap: 18px; }
 .preventa img { border: 3px solid var(--ink); border-radius: var(--r-sm); width: 100%; aspect-ratio: 4/3; object-fit: cover; background: var(--cream); }
-.preventa .kicker { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; color: var(--fucsia); margin-bottom: 6px; }
+.preventa .kicker { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; color: var(--ink); margin-bottom: 6px; }
 .preventa h3 { font-family: var(--display); font-weight: 400; font-size: 27px; line-height: 1.05; color: var(--grape); text-shadow: 2px 2px 0 var(--white); }
 .preventa p { font-size: 15px; font-weight: 500; margin-top: 10px; color: var(--ink); }
 .preventa p.kicker { margin-top: 0; }
@@ -362,10 +362,10 @@ details code { font-family: var(--sans); font-weight: 800; color: var(--ink); wo
 .line b { font-family: var(--display); font-weight: 400; font-size: 16px; line-height: 1.15; display: block; color: var(--grape); }
 .line b a:hover { color: var(--fucsia); }
 .line .meta { font-size: 12px; font-weight: 600; color: var(--ink-2); }
-.line .lrow { grid-column: 2; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.line .lrow { grid-column: 2; display: flex; align-items: center; gap: 8px; }
 .line .amt { font-family: var(--display); font-size: 16px; margin-left: auto; }
-.line .qty button { width: 36px; height: 40px; }
-.rm { font-size: 12px; font-weight: 700; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; min-height: 36px; padding: 0 6px; }
+.line .qty button { width: 32px; height: 40px; }
+.rm { font-size: 12px; font-weight: 700; color: var(--ink-2); text-decoration: underline; text-underline-offset: 2px; min-height: 36px; padding: 0 4px; flex: none; }
 .rm:hover { color: var(--fucsia); }
 fieldset { border: none; min-width: 0; }
 legend { font-family: var(--display); font-size: 19px; color: var(--grape); margin-bottom: 12px; }
