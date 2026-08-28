@@ -56,6 +56,7 @@ for (const p of catalog) {
 </script>
 </head>
 <body>
+<script>document.documentElement.classList.add("js")</script>
 
 ${header}
 

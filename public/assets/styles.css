@@ -408,3 +408,7 @@ legend { font-family: var(--display); font-size: 19px; color: var(--grape); marg
   .line img { grid-row: auto; }
   .line .lrow { grid-column: auto; }
 }
+
+/* ---------- ESTADOS ---------- */
+html:not(.js) .buybar .qty { display: none; }
+.btn.mrc-added { background: var(--menta) !important; color: var(--ink) !important; }
