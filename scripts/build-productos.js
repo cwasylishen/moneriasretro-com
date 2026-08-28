@@ -81,11 +81,11 @@ ${header}
       ${buy}
       <a class="ask" href="https://wa.me/50684804222?text=${p.wa}" rel="noopener">${WA_ICON}Preguntanos algo antes de pedir</a>
       <div class="panel">
-        <h4>Qué trae</h4>
+        <h3>Qué trae</h3>
         <ul>${trae.map(([k, v]) => `<li>${esc(k)} <b>${esc(v)}</b></li>`).join("")}</ul>
       </div>
       <div class="panel">
-        <h4>Cómo te llega</h4>
+        <h3>Cómo te llega</h3>
         <p>Retiro gratis en Curridabat, coordinando punto y hora por WhatsApp. Dentro del Gran Área Metropolitana ₡2.500, y podés pagarle al mensajero contra entrega. Al resto del país ₡3.500 por Correos de Costa Rica.</p>
       </div>
     </div>
