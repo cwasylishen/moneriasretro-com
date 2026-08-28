@@ -99,7 +99,7 @@ html.is-scrolled .mark img { width: 32px; height: 32px; }
 .chips { position: sticky; top: var(--top-h); z-index: 35; background: var(--cream); border-bottom: 3px solid var(--ink); overflow-x: auto; scrollbar-width: none; transition: top var(--t); }
 .chips::-webkit-scrollbar { display: none; }
 .chips-in { display: flex; gap: 9px; padding: 8px 18px; white-space: nowrap; max-width: var(--maxw); margin: 0 auto; }
-.chip { border: 2px solid var(--ink); border-radius: 999px; padding: 0 15px; min-height: 35px; display: inline-flex; align-items: center; font-size: 13.5px; font-weight: 700; background: var(--white); color: var(--ink); transition: background var(--t), color var(--t), box-shadow var(--t); }
+.chip { border: 2px solid var(--ink); border-radius: 999px; padding: 0 15px; min-height: 35px; display: inline-flex; align-items: center; font-size: 13.5px; font-weight: 700; background: var(--white); color: var(--ink); transition: box-shadow var(--t); }
 .chip:hover { background: var(--amarillo); }
 .chip.on, .chip[aria-current="true"] { background: var(--fucsia); color: #fff; box-shadow: var(--pop-sm); }
 [id] { scroll-margin-top: calc(var(--top-h) + var(--chips-h) + 10px); }
