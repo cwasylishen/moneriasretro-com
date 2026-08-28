@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tu pedido | Monerías Retro</title>
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#5B21B6" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chango&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/styles.css" />
+<link rel="icon" type="image/png" href="/assets/images/logo.png" />
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="/" aria-label="Monerías Retro, inicio">
+      <img src="/assets/images/logo.png" alt="" width="38" height="38" />
+      <span><b>Monerías Retro</b><small>Curiosidades vintage desde 2020</small></span>
+    </a>
+    <div class="spacer"></div>
+    <a class="bag" href="/pedido.html" aria-label="Tu pedido, vacío">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5.5 8.5h13l-1.1 11.2a1.5 1.5 0 0 1-1.5 1.3H8.1a1.5 1.5 0 0 1-1.5-1.3L5.5 8.5Z"/><path d="M9 8.5v-1a3 3 0 0 1 6 0v1"/></svg>
+      <i aria-hidden="true">0</i>
+    </a>
+    <a class="top-cta nav-wa" href="https://wa.me/50684804222?text=¡Hola!%20Me%20interesan%20sus%20productos%20retro." rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.1 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-2.9-1.3-4.8-4.3-5-4.5-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.8 1.9.9 2s.1.3 0 .5c-.1.2-.2.3-.3.5l-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.2.1.4.1.5-.1.2-.2.6-.7.8-1 .1-.3.3-.2.6-.1.2.1 1.5.7 1.8.9.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
+      Escribinos
+    </a>
+  </div>
+</header>
+
+<nav class="chips" aria-label="Categorías">
+  <div class="chips-in">
+    <a class="chip" href="/#juegos">Juegos de mesa</a>
+    <a class="chip" href="/#papeleria">Papelería con aroma</a>
+    <a class="chip" href="/#munecas">Muñecas de vestir</a>
+    <a class="chip" href="/#como-comprar">Cómo ordenar</a>
+    <a class="chip" href="/#blog">Historias</a>
+  </div>
+</nav>
+
+<main class="page order-page">
+<div class="dots" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="order">
+    <div>
+      <h1>Tu pedido</h1>
+      <p class="sub">Revisá que esté todo, decinos dónde estás y mandalo por WhatsApp. Acá no se cobra nada: te confirmamos existencias y coordinamos el pago.</p>
+
+      <div class="box" id="empty">
+        <h2>Tu bolsa está vacía</h2>
+        <p class="fine">Tocá "Agregar" en cualquier producto del catálogo y aparece aquí.</p>
+        <p class="buy"><a class="btn" href="/#juegos">Ver el catálogo</a></p>
+      </div>
+
+      <form id="order-form" hidden novalidate>
+        <div class="box">
+          <h2>Lo que llevás</h2>
+          <div id="lines"></div>
+        </div>
+        <div class="box">
+          <fieldset>
+            <legend>Cómo lo recibís</legend>
+            <label class="opt"><input type="radio" name="zona" value="GAM" checked /><span class="dot" aria-hidden="true"></span><span><b>Envío dentro del GAM</b><span class="d">Podés pagarle al mensajero contra entrega</span></span><span class="cost">₡2.500</span></label>
+            <label class="opt"><input type="radio" name="zona" value="resto" /><span class="dot" aria-hidden="true"></span><span><b>Resto del país</b><span class="d">Por Correos de Costa Rica</span></span><span class="cost">₡3.500</span></label>
+          </fieldset>
+        </div>
+        <div class="box">
+          <fieldset>
+            <legend>Tus datos</legend>
+            <div class="fields">
+              <div class="field"><label for="name">Nombre</label><input id="name" name="name" autocomplete="name" /></div>
+              <div class="field"><label for="phone">Teléfono</label><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" /></div>
+              <div class="field wide"><label for="address">Dirección para la entrega</label><input id="address" name="address" autocomplete="street-address" placeholder="Cantón, barrio, señas y algún punto de referencia" /></div>
+            </div>
+          </fieldset>
+        </div>
+      </form>
+
+      <div class="assist">
+        <div class="who"><i aria-hidden="true"></i>Asistente de Monerías</div>
+        <p>Es un asistente automático, no una persona. Te ayuda a armar el pedido; si preguntás algo que no sabe, te pasa con la dueña por WhatsApp.</p>
+        <p class="buy"><button type="button" class="btn ghost mini" data-open-chat>Abrir el asistente</button></p>
+      </div>
+    </div>
+
+    <aside class="side" id="side" hidden>
+      <div class="total">
+        <h2>Resumen</h2>
+        <ul id="sum"></ul>
+        <div class="grand"><span>Total, a pagar por SINPE o al recibir</span><b id="grand">₡0</b></div>
+        <a class="send" id="send" href="https://wa.me/50684804222" rel="noopener" data-mr-source="pedido"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.1 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-2.9-1.3-4.8-4.3-5-4.5-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.8 1.9.9 2s.1.3 0 .5c-.1.2-.2.3-.3.5l-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.2.1.4.1.5-.1.2-.2.6-.7.8-1 .1-.3.3-.2.6-.1.2.1 1.5.7 1.8.9.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>Mandar el pedido por WhatsApp</a>
+        <p class="fine">Se abre WhatsApp en tu teléfono con el pedido escrito. Nada se cobra todavía: te confirmamos existencias y te pasamos el SINPE 8480 4222 o la cuenta para transferencia.</p>
+      </div>
+      <div class="box">
+        <details>
+          <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>Datos para transferencia</summary>
+          <p>Banco Nacional, IBAN <code>CR52015102820010313962</code> · BAC, cuenta <code>931237820</code>. SINPE Móvil <code>8480 4222</code> a nombre de Karla Coto. Mandá el comprobante por WhatsApp.</p>
+        </details>
+      </div>
+    </aside>
+  </div>
+</div>
+</main>
+
+<footer class="footer">
+  <div class="dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <p class="fb footer-brand">Monerías Retro</p>
+    <div class="cols">
+      <div>
+        <p>Hecho con cariño y nostalgia, desde Costa Rica.</p>
+        <div class="soc footer-social">
+          <a href="https://www.facebook.com/moneriasretrovintage" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.5-1.5h1.7V3.9c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1V10H7.5v3h2.8v8h3.2Z"/></svg></a>
+          <a href="https://www.instagram.com/monerias_retro_vintage" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://wa.me/50684804222?text=¡Hola!%20Me%20interesan%20sus%20productos%20retro." rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.1 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-2.9-1.3-4.8-4.3-5-4.5-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.8 1.9.9 2s.1.3 0 .5c-.1.2-.2.3-.3.5l-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.2.1.4.1.5-.1.2-.2.6-.7.8-1 .1-.3.3-.2.6-.1.2.1 1.5.7 1.8.9.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg></a>
+        </div>
+      </div>
+      <div><p><b>WhatsApp</b><br/><a href="https://wa.me/50684804222" rel="noopener">8480 4222</a></p></div>
+      <div><p><b>Envíos</b><br/>GAM ₡2.500<br/>Resto del país por Correos de CR ₡3.500</p></div>
+    </div>
+    <div class="footer-bottom">
+      <small>&copy; <span id="year">2026</span> Monerías Retro. Todos los derechos reservados. · <span class="wizardweb-credit">Sitio creado y alojado por <a href="https://wizardweb.ca/cr/" target="_blank" rel="noopener">wizardweb.ca</a></span></small>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float fab" href="https://wa.me/50684804222?text=¡Hola!%20Estoy%20interesado%20en%20sus%20productos%20retro." aria-label="Escribinos por WhatsApp" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.1 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-2.9-1.3-4.8-4.3-5-4.5-.1-.2-1.1-1.5-1.1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5.2.5.8 1.9.9 2s.1.3 0 .5c-.1.2-.2.3-.3.5l-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 1.9 1.1.9 2 1.2 2.3 1.4.2.1.4.1.5-.1.2-.2.6-.7.8-1 .1-.3.3-.2.6-.1.2.1 1.5.7 1.8.9.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
+</a>
+
+<script src="/assets/track.js" defer></script>
+<script src="/assets/chat.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<script>(function(){var S="monerias";function vid(){try{var k="wzv",x=localStorage.getItem(k);if(!x){x=Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem(k,x)}return x}catch(e){return""}}
+function send(t){try{var r=document.referrer;try{if(r&&new URL(r).hostname===location.hostname)r=""}catch(e){}navigator.sendBeacon("https://app.wizardweb.ca/api/ingest",JSON.stringify({site_id:S,type:t,path:location.pathname,referrer:r,visitor:vid()}))}catch(e){}}
+send("pageview");document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me"],a[href*="api.whatsapp.com"],a[href*="whatsapp.com/send"]');if(a)send("whatsapp");},true);})();</script>
+<script src="/assets/pedido.js" defer></script>
+</body>
+</html>
