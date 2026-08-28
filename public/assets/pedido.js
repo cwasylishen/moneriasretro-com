@@ -21,7 +21,7 @@
     }).join("");
     var z = zone(), ship = M.SHIP[z];
     sum.innerHTML = items.map(function (it) { var c = M.CATALOG[it.id]; return "<li>" + esc(c.name) + " × " + it.qty + " <b>" + M.crc(c.price * it.qty) + "</b></li>"; }).join("") +
-      "<li>" + esc(M.SHIP_LABEL[z]) + " <b>" + M.crc(ship) + "</b></li>";
+      "<li>" + esc(M.SHIP_LABEL[z]) + " <b>" + (ship ? M.crc(ship) : "Gratis") + "</b></li>";
     grand.textContent = M.crc(M.subtotal() + ship);
     send.href = M.waLink(M.orderMessage(z, customer()));
   }

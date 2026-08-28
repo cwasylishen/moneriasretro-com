@@ -32,8 +32,8 @@
   var NAME_TO_ID = {};
   Object.keys(CATALOG).forEach(function (id) { NAME_TO_ID[CATALOG[id].name.trim().toLowerCase()] = id; });
 
-  var SHIP = { GAM: 2500, resto: 3500 };
-  var SHIP_LABEL = { GAM: "Envío GAM", resto: "Envío resto del país por Correos" };
+  var SHIP = { retiro: 0, GAM: 2500, resto: 3500 };
+  var SHIP_LABEL = { retiro: "Retiro en Curridabat", GAM: "Envío GAM", resto: "Envío resto del país por Correos" };
   var SINPE = "8480 4222";
   var GREETING = "¡Hola! 👋 Soy el asistente virtual de Monerías Retro, un agente automático (no soy una persona). Te ayudo a encontrar productos y a armar tu pedido. ¿Qué andás buscando?";
 
@@ -209,7 +209,7 @@
     cart.forEach(function (it) { var c = CATALOG[it.id]; msg += "• " + c.name + " ×" + it.qty + " — " + crc(c.price * it.qty) + "\n"; });
     msg += "Subtotal: " + crc(sub) + "\n" + SHIP_LABEL[zone] + ": " + (ship ? crc(ship) : "gratis") + "\nTOTAL: " + crc(total) + "\n\n";
     if (customer.name) msg += "Cliente: " + customer.name + "\n";
-    msg += "Entrega: Envío (" + (zone === "GAM" ? "GAM" : "resto del país") + ")\n";
+    msg += "Entrega: " + (zone === "retiro" ? "Retiro gratis en Curridabat" : "Envío (" + (zone === "GAM" ? "GAM" : "resto del país") + ")") + "\n";
     if (customer.address) msg += "Dirección: " + customer.address + "\n";
     if (customer.phone) msg += "Tel: " + customer.phone + "\n";
     msg += "Ref: " + ref + "\n\nApenas me confirmen disponibilidad, pago por SINPE Móvil. ¡Gracias! 💛";

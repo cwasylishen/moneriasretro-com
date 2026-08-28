@@ -47,4 +47,4 @@ Variables (Dashboard → Worker → Settings → Variables and Secrets, o por CL
 - `OPENROUTER_API_KEY` — requerida, como **Secret**.
 - `OPENROUTER_MODEL` — opcional. Default: `google/gemini-2.5-flash`. Se puede cambiar sin tocar código (ej. un modelo `:free`).
 
-Catálogo, precios, zonas de envío (GAM ₡2.500 / resto ₡3.500 / retiro gratis en Cartago) y tono viven en el prompt de `worker.js`. Los precios también están en `public/assets/chat.js` para calcular los totales en el cliente; si cambian, actualizá ambos.
+Catálogo, precios, zonas de envío (GAM ₡2.500 / resto ₡3.500 / retiro gratis en Curridabat) y tono viven en el prompt de `worker.js`. Los precios también están en `public/assets/chat.js` para calcular los totales en el cliente; si cambian, actualizá ambos.
