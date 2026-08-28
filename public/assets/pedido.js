@@ -1,4 +1,4 @@
-/* /pedido.html — la bolsa en página completa. Lee y escribe el mismo carrito que el asistente
+/* /pedido — la bolsa en página completa. Lee y escribe el mismo carrito que el asistente
    (window.MRCart, chat.js). Precios, envío y formato del mensaje vienen de chat.js: acá no hay copia. */
 (function () {
   "use strict";

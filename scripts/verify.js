@@ -3,7 +3,7 @@ const { chromium } = require("/home/mike/buddy-wizardweb/node_modules/playwright
 const base = process.argv[2], prefix = process.argv[3] || "/home/mike/buddy-wizardweb/files/images/monerias-b-built";
 const pages = [
   ["home", "/", false], ["home-full", "/", true], ["category", "/#munecas", false],
-  ["producto", "/producto/loteria-retro.html", false], ["pedido", "/pedido.html", false], ["404", "/no-existe-esta-pagina", false]
+  ["producto", "/producto/loteria-retro", false], ["pedido", "/pedido", false], ["404", "/no-existe-esta-pagina", false]
 ];
 const vps = [[390, 844], [1280, 900]];
 const lum = ([r, g, b]) => { const f = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b); };

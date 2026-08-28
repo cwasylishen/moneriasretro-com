@@ -17,7 +17,7 @@
     var n = window.MRCart.count();
     var note = document.getElementById("added-note");
     if (!note) { note = document.createElement("p"); note.id = "added-note"; note.className = "fine"; note.setAttribute("role", "status"); bar.insertAdjacentElement("afterend", note); }
-    note.innerHTML = 'En tu bolsa: ' + n + (n === 1 ? ' artículo' : ' artículos') + ' · <a href="/pedido.html">Ver el pedido</a> o seguí mirando.';
+    note.innerHTML = 'En tu bolsa: ' + n + (n === 1 ? ' artículo' : ' artículos') + ' · <a href="/pedido">Ver el pedido</a> o seguí mirando.';
   }
   btn.addEventListener("click", function (e) { e.preventDefault(); add(); });
   btn.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); add(); } });

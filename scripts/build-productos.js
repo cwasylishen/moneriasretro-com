@@ -39,9 +39,9 @@ for (const p of catalog) {
 <title>${esc(p.name)} ${p.price} | Monerías Retro Costa Rica</title>
 <meta name="description" content="${esc(p.desc)} Envíos a todo Costa Rica. Pedidos por WhatsApp." />
 <meta name="theme-color" content="#5B21B6" />
-<link rel="canonical" href="https://moneriasretro.com/producto/${p.id}.html" />
+<link rel="canonical" href="https://moneriasretro.com/producto/${p.id}" />
 <meta property="og:type" content="product" />
-<meta property="og:url" content="https://moneriasretro.com/producto/${p.id}.html" />
+<meta property="og:url" content="https://moneriasretro.com/producto/${p.id}" />
 <meta property="og:title" content="${esc(p.name)} | Monerías Retro" />
 <meta property="og:description" content="${esc(p.desc)}" />
 <meta property="og:image" content="https://moneriasretro.com/assets/images/${p.img}" />
@@ -52,7 +52,7 @@ for (const p of catalog) {
 <link rel="stylesheet" href="/assets/styles.css" />
 <link rel="icon" type="image/png" href="/assets/images/logo.png" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":${JSON.stringify(p.name)},"image":"https://moneriasretro.com/assets/images/${p.img}","description":${JSON.stringify(p.desc)},"brand":{"@type":"Brand","name":"Monerías Retro"},"offers":{"@type":"Offer","priceCurrency":"CRC","price":"${p.price.replace(/[₡.]/g, "")}","availability":"https://schema.org/${p.soldout ? "PreOrder" : "InStock"}","url":"https://moneriasretro.com/producto/${p.id}.html"}}
+{"@context":"https://schema.org","@type":"Product","name":${JSON.stringify(p.name)},"image":"https://moneriasretro.com/assets/images/${p.img}","description":${JSON.stringify(p.desc)},"brand":{"@type":"Brand","name":"Monerías Retro"},"offers":{"@type":"Offer","priceCurrency":"CRC","price":"${p.price.replace(/[₡.]/g, "")}","availability":"https://schema.org/${p.soldout ? "PreOrder" : "InStock"}","url":"https://moneriasretro.com/producto/${p.id}"}}
 </script>
 </head>
 <body>
