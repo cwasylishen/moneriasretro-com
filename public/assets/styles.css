@@ -412,3 +412,20 @@ legend { font-family: var(--display); font-size: 19px; color: var(--grape); marg
 /* ---------- ESTADOS ---------- */
 html:not(.js) .buybar .qty { display: none; }
 .btn.mrc-added { background: var(--menta) !important; color: var(--ink) !important; }
+
+/* ---------- COMPATIBILIDAD: páginas del blog (markup viejo, mismo look) ---------- */
+:root { --shadow-md: var(--pop); }
+main > section { padding: 28px 0 40px; }
+.eyebrow { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); background: var(--amarillo); border: 2px solid var(--ink); border-radius: 999px; padding: 4px 12px; margin-bottom: 12px; }
+.hero.wrap { background: none; border: none; text-align: left; padding-top: 28px; }
+.hero-title, .post h1 { font-size: clamp(30px, 7.5vw, 46px); line-height: 1.08; text-shadow: 2px 2px 0 var(--white), 4px 4px 0 var(--ink); margin-bottom: 12px; }
+.hero-sub { font-size: 16px; font-weight: 500; color: var(--ink-2); max-width: 36em; }
+.blog-list { display: grid; gap: 16px; margin-top: 20px; }
+.blog-card { background: var(--white); color: var(--ink); border: 3px solid var(--ink); border-radius: var(--r); box-shadow: var(--pop); padding: 18px; display: block; transition: transform var(--t), box-shadow var(--t); }
+.blog-card:hover { transform: translate(2px, 2px); box-shadow: var(--pop-sm); }
+.blog-card h3 { font-family: var(--display); font-weight: 400; font-size: 21px; line-height: 1.1; color: var(--grape); margin-bottom: 7px; }
+.blog-card p { font-size: 14px; color: var(--ink-2); font-weight: 500; }
+@media (min-width: 900px) { .blog-list { grid-template-columns: 1fr 1fr; gap: 24px; } }
+.post img { border: 3px solid var(--ink); border-radius: var(--r); box-shadow: var(--pop); }
+.post-meta .dot { color: var(--fucsia); }
+.post .back { color: var(--fucsia); font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
