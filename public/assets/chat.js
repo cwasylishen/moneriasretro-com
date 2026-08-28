@@ -46,11 +46,14 @@
   }
 
   // ---- carrito ----
+  var CART_KEY = "mr_cart_v1";
   var cart = [];
+  try { var saved = JSON.parse(localStorage.getItem(CART_KEY) || "[]"); if (Array.isArray(saved)) cart = saved.filter(function (x) { return x && CATALOG[x.id] && x.qty > 0; }).map(function (x) { return { id: x.id, qty: Math.round(x.qty) }; }); } catch (e) {}
+  function persist() { try { localStorage.setItem(CART_KEY, JSON.stringify(cart)); } catch (e) {} try { document.dispatchEvent(new CustomEvent("mr:cart")); } catch (e) {} }
   function cartFind(id) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id) return cart[i]; return null; }
-  function cartRemove(id) { cart = cart.filter(function (x) { return x.id !== id; }); }
-  function cartAdd(id, n) { if (!CATALOG[id]) return; var it = cartFind(id); if (it) { it.qty += n; if (it.qty < 1) cartRemove(id); } else if (n > 0) cart.push({ id: id, qty: n }); }
-  function cartSetQty(id, n) { if (!CATALOG[id]) return; var it = cartFind(id); if (it) { it.qty = n; if (it.qty < 1) cartRemove(id); } else if (n > 0) cart.push({ id: id, qty: n }); }
+  function cartRemove(id) { cart = cart.filter(function (x) { return x.id !== id; }); persist(); }
+  function cartAdd(id, n) { if (!CATALOG[id]) return; var it = cartFind(id); if (it) { it.qty += n; if (it.qty < 1) cartRemove(id); } else if (n > 0) cart.push({ id: id, qty: n }); persist(); }
+  function cartSetQty(id, n) { if (!CATALOG[id]) return; var it = cartFind(id); if (it) { it.qty = n; if (it.qty < 1) cartRemove(id); } else if (n > 0) cart.push({ id: id, qty: n }); persist(); }
   function cartCount() { var n = 0; cart.forEach(function (x) { n += x.qty; }); return n; }
   function cartSubtotal() { var s = 0; cart.forEach(function (x) { var c = CATALOG[x.id]; if (c) s += c.price * x.qty; }); return s; }
   function cartForApi() { return cart.map(function (it) { return { id: it.id, name: CATALOG[it.id].name, qty: it.qty }; }); }
@@ -198,6 +201,21 @@
     renderCartBar();
   }
 
+  function orderMessage(zone, customer, ref) {
+    zone = SHIP.hasOwnProperty(zone) ? zone : "resto";
+    customer = customer || {}; ref = ref || makeRef();
+    var sub = cartSubtotal(), ship = SHIP[zone], total = sub + ship;
+    var msg = "🛍️ NUEVO PEDIDO · Monerías Retro\n";
+    cart.forEach(function (it) { var c = CATALOG[it.id]; msg += "• " + c.name + " ×" + it.qty + " — " + crc(c.price * it.qty) + "\n"; });
+    msg += "Subtotal: " + crc(sub) + "\n" + SHIP_LABEL[zone] + ": " + (ship ? crc(ship) : "gratis") + "\nTOTAL: " + crc(total) + "\n\n";
+    if (customer.name) msg += "Cliente: " + customer.name + "\n";
+    msg += "Entrega: Envío (" + (zone === "GAM" ? "GAM" : "resto del país") + ")\n";
+    if (customer.address) msg += "Dirección: " + customer.address + "\n";
+    if (customer.phone) msg += "Tel: " + customer.phone + "\n";
+    msg += "Ref: " + ref + "\n\nApenas me confirmen disponibilidad, pago por SINPE Móvil. ¡Gracias! 💛";
+    return msg;
+  }
+
   function renderOrder(zone, customer) {
     if (cart.length === 0) return;
     zone = SHIP.hasOwnProperty(zone) ? zone : "resto";
@@ -212,14 +230,7 @@
     body.appendChild(card); scrollDown();
     addBubble("bot", "💳 Podés pagar por SINPE Móvil al " + SINPE + " (mandá el comprobante) o en efectivo contra entrega si estás en el GAM. Monerías te confirma apenas reciba tu pedido.");
 
-    var msg = "🛍️ NUEVO PEDIDO · Monerías Retro\n";
-    cart.forEach(function (it) { var c = CATALOG[it.id]; msg += "• " + c.name + " ×" + it.qty + " — " + crc(c.price * it.qty) + "\n"; });
-    msg += "Subtotal: " + crc(sub) + "\n" + SHIP_LABEL[zone] + ": " + (ship ? crc(ship) : "gratis") + "\nTOTAL: " + crc(total) + "\n\n";
-    if (customer.name) msg += "Cliente: " + customer.name + "\n";
-    msg += "Entrega: Envío (" + (zone === "GAM" ? "GAM" : "resto del país") + ")\n";
-    if (customer.address) msg += "Dirección: " + customer.address + "\n";
-    if (customer.phone) msg += "Tel: " + customer.phone + "\n";
-    msg += "Ref: " + ref + "\n\nApenas me confirmen disponibilidad, pago por SINPE Móvil. ¡Gracias! 💛";
+    var msg = orderMessage(zone, customer, ref);
     addCTA("Enviar mi pedido por WhatsApp", waLink(msg));
   }
 
@@ -305,7 +316,19 @@
     });
 
     wireProducts();
+    persist();
   }
+
+  window.MRCart = {
+    CATALOG: CATALOG, SHIP: SHIP, SHIP_LABEL: SHIP_LABEL, SINPE: SINPE,
+    items: function () { return cart.map(function (x) { return { id: x.id, qty: x.qty }; }); },
+    count: cartCount, subtotal: cartSubtotal, crc: crc,
+    add: function (id, n) { cartAdd(id, n == null ? 1 : n); if (badge) updateBadge(); if (cartBar) renderCartBar(); if (window.mrTrack) window.mrTrack("add_to_cart", { source: id }); },
+    setQty: function (id, n) { cartSetQty(id, n); if (badge) updateBadge(); if (cartBar) renderCartBar(); },
+    remove: function (id) { cartRemove(id); if (badge) updateBadge(); if (cartBar) renderCartBar(); },
+    orderMessage: orderMessage, waLink: waLink,
+    open: function (ctx) { openChat(ctx || "page"); }
+  };
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
   else build();
